@@ -1,6 +1,7 @@
 
 t0="$( date +%s )"
 mintime="-1"
+echo "starting execution!" > /home/ubuntu/launch_gwf.out
 cat $1 | while read a t a r n a; do
 	[ $(( mintime < 0 )) -eq 1 ] && mintime="$t"
 	while true; do
