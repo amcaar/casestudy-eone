@@ -3,6 +3,9 @@ configure casestudy (
     - name: Download casestudy files
       git: repo=https://github.com/amcaar/casestudy-eone.git dest=/home/ubuntu/casestudy/ version=master
 
+    - name: Give execution permissions
+      file: path=/home/ubuntu/casestudy/launch_gwf.sh mode=0644
+
     - name: Compile synthalloc
       command: gcc -pthread -o synthalloc synthetic-alloc.c  chdir=/opt/tmp/synthalloc creates=/opt/tmp/synthallocsynthalloc
 
