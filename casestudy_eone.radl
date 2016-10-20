@@ -1,0 +1,28 @@
+configure casestudy (
+@begin
+    - name: Download casestudy files
+      git: repo=https://github.com/amcaar/casestudy-eone.git dest=/home/ubuntu/casestudy/ version=master
+
+    - name: Compile synthalloc
+      command: gcc -pthread -o synthalloc synthetic-alloc.c  chdir=/opt/tmp/synthalloc creates=/opt/tmp/synthallocsynthalloc
+
+#    - name: Start casestudy
+#      command: ./launch_gwf.sh frag.gwf chdir=/home/ubuntu/ creates=/home/ubuntu/launch_gwf.out
+@end
+)
+
+configure front (
+@begin
+  - ec3_prio: 5
+    tasks:
+    - include: casestudy.yml
+@end
+)
+
+configure wn (
+@begin
+  - ec3_prio: 5
+    tasks:
+    - include: casestudy.yml
+@end
+)

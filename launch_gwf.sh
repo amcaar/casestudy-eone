@@ -10,8 +10,8 @@ cat $1 | while read a t a r n a; do
 		if [ $(( t-mintime <= t1-t0 )) -eq 1 ]; then
 			for ((i=0; i<n; i++)); do
 				# Remplaza por un comando que lanza un sleep de $r secs
-				echo sbatch mysleep.sh $r
-				sbatch mysleep.sh $r &
+				echo sbatch script.slurm $r
+				sbatch script.slurm $r &
 			done
 			break
 		fi
