@@ -7,7 +7,7 @@ configure casestudy (
       file: path=/home/ubuntu/casestudy/launch_gwf.sh mode=0644
 
     - name: Compile synthalloc
-      command: gcc -pthread -o synthalloc synthetic-alloc.c  chdir=/opt/tmp/synthalloc creates=/opt/tmp/synthallocsynthalloc
+      command: gcc -pthread -o synthalloc synthetic-alloc.c  chdir=/opt/tmp/synthalloc creates=/opt/tmp/synthalloc
 
 #    - name: Start casestudy
 #      command: ./launch_gwf.sh frag.gwf chdir=/home/ubuntu/ creates=/home/ubuntu/launch_gwf.out
