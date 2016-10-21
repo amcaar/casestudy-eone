@@ -9,9 +9,8 @@ cat $1 | while read a t a r n a; do
         echo $t $mintime $t1 $t0
         if [ $(( t-mintime <= t1-t0 )) -eq 1 ]; then
             for ((i=0; i<n; i++)); do
-                # Remplaza por un comando que lanza un sleep de $r secs
-                echo sbatch script.slurm $r
-                sbatch script.slurm &
+                echo sbatch script.slurm $i
+                sbatch script.slurm $i &
             done
             break
         fi
