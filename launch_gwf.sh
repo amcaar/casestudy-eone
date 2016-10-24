@@ -10,8 +10,8 @@ cat $1 | while read a t a r n a; do
         echo $t $mintime $t1 $t0
         if [ $(( t-mintime <= t1-t0 )) -eq 1 ]; then
             for ((i=0; i<n; i++)); do
-                echo sbatch script.slurm $i
-                sbatch script.slurm $i &
+                echo sbatch script.slurm $j
+                sbatch script.slurm $j &
                 let j+=1
             done
             break
