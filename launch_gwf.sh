@@ -1,6 +1,7 @@
 #!/bin/bash
 t0="$( date +%s )"
 mintime="-1"
+j=0
 echo "starting execution!" $(date) >> /home/ubuntu/launch_gwf.out
 cat $1 | while read a t a r n a; do
     [ $(( mintime < 0 )) -eq 1 ] && mintime="$t"
@@ -11,6 +12,7 @@ cat $1 | while read a t a r n a; do
             for ((i=0; i<n; i++)); do
                 echo sbatch script.slurm $i
                 sbatch script.slurm $i &
+                let j+=1
             done
             break
         fi
