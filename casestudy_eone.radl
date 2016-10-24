@@ -4,10 +4,14 @@ configure casestudy (
       git: repo=https://github.com/amcaar/casestudy-eone.git dest=/home/ubuntu/casestudy/ version=master
 
     - name: Give execution permissions
-      file: path=/home/ubuntu/casestudy/launch_gwf.sh mode=0644
+      file: path=/home/ubuntu/casestudy/launch_gwf.sh mode=0755
 
     - name: Compile synthalloc
-      command: gcc -pthread -o synthalloc synthetic-alloc.c  chdir=/opt/tmp/synthalloc creates=/opt/tmp/synthalloc
+      command: gcc -pthread -o synthalloc synthetic-alloc.c  chdir=/opt/tmp/synthalloc creates=/opt/tmp/synthalloc/synthalloc
+
+    - name: configure permissions of synthalloc
+      file: path=/home/ubuntu/casestudy/ owner=ubuntu group=ubuntu recurse=yes
+    - file: path=/opt/tmp/synthalloc owner=ubuntu group=ubuntu recurse=yes
 
 #    - name: Start casestudy
 #      command: ./launch_gwf.sh frag.gwf chdir=/home/ubuntu/ creates=/home/ubuntu/launch_gwf.out
