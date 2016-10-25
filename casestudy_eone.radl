@@ -1,7 +1,13 @@
 configure casestudy (
 @begin
     - name: Download casestudy files
-      git: repo=https://github.com/amcaar/casestudy-eone.git dest=/home/ubuntu/casestudy/ version=master
+      get_url: url=https://github.com/amcaar/casestudy-eone/archive/master.zip dest=/tmp/casestudy-eone.zip 
+      register: result
+      until: result|success
+      retries: 5
+      delay: 1
+    - unarchive: src=/tmp/casestudy-eone.zip dest=/home/ubuntu copy=no creates=/home/ubuntu/casestudy/launch_gwf.sh
+      #git: repo=https://github.com/amcaar/casestudy-eone.git dest=/home/ubuntu/casestudy/ version=master
 
     - name: Give execution permissions
       file: path=/home/ubuntu/casestudy/launch_gwf.sh mode=0755
